@@ -1,7 +1,7 @@
 require_relative 'node'
 require 'byebug'
 
-module Tree
+module Chess
   class Knight
 
   end
