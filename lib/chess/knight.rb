@@ -1,4 +1,6 @@
 require_relative 'chess'
+require_relative 'node'
+require_relative 'fake_queue'
 require 'byebug'
 
 module Chess
