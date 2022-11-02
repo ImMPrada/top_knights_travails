@@ -1,6 +1,12 @@
 require:
   - rubocop-rspec
 
+Lint/ScriptPermission:
+  Enabled: false
+
+Lint/EmptyFile:
+  Enabled: false
+
 AllCops:
   TargetRubyVersion: 3.1.2
 
