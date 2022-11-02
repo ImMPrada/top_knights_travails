@@ -1,5 +1,5 @@
 require './spec/spec_helper'
 
-RSpec.describe Chess::Knight do
+RSpec.describe Chess::FakeQueue do
 
 end
