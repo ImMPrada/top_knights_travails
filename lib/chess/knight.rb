@@ -13,15 +13,29 @@ module Chess
     def move_to(target_position)
       queue = FakeQueue.new(@from)
       last_node = move_to_helper(target_position, queue)
+
+      build_path(last_node)
     end
 
     private
+
+    def build_path(last_node)
+      path = []
+      current_node = last_node
+
+      while current_node
+        path.unshift(current_node.coordinates)
+        current_node = current_node.parent
+      end
+
+      path
+    end
 
     def move_to_helper(target_position, queue)
       current_node = queue.remove
       return current_node if current_node.coordinates == target_position
 
-      possibilities = @@next_move_adds.map{ |delta| possible_move(current_node.coordinates, delta) }.compact
+      possibilities = @@next_move_adds.map { |delta| possible_move(current_node.coordinates, delta) }.compact
       possibilities.each { |position| queue.add(Node.new(position, current_node)) }
       move_to_helper(target_position, queue)
     end
