@@ -1,6 +1,3 @@
-require_relative 'chess'
-require 'byebug'
-
 module Chess
   class Node
     attr_reader :coordinates, :parent

@@ -1,5 +1,3 @@
-require_relative 'Chess'
-
 module Chess
   class FakeQueue
     attr_reader :data
