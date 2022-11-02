@@ -4,7 +4,7 @@ require_relative 'fake_queue'
 
 module Chess
   class Knight
-    @@next_move_adds = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]]
+    KNIGHT_POSITION_DELTAS = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]].freeze
 
     def initialize(coordinates)
       @from = Node.new(coordinates)
@@ -35,7 +35,7 @@ module Chess
       current_node = queue.remove
       return current_node if current_node.coordinates == target_position
 
-      possibilities = @@next_move_adds.map { |delta| possible_move(current_node.coordinates, delta) }.compact
+      possibilities = KNIGHT_POSITION_DELTAS.map { |delta| possible_move(current_node.coordinates, delta) }.compact
       possibilities.each { |position| queue.add(Node.new(position, current_node)) }
       move_to_helper(target_position, queue)
     end
