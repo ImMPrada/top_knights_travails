@@ -17,8 +17,17 @@ end
 puts 'For [3, 3] -> [4, 3]'
 knight_moves([3, 3], [4, 3])
 
-puts 'For [3, 3] -> [0,0]'
+puts 'For [3, 3] -> [0, 0]'
 knight_moves([3, 3], [0, 0])
 
-puts 'For [0, 0] -> [3,3]'
+puts 'For [0, 0] -> [3, 3]'
 knight_moves([0, 0], [3, 3])
+
+puts 'For [0, 0] -> [7, 7]'
+knight_moves([0, 0], [7, 7])
+
+puts 'For [0, 0] -> [0, 7]'
+knight_moves([0, 0], [0, 7])
+
+puts 'For [0, 0] -> [7, 0]'
+knight_moves([0, 0], [7, 0])
