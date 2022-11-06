@@ -1,25 +1,17 @@
 require './spec/spec_helper'
 
 RSpec.describe Chess::Step do
-  describe '#initialize' do
-    let(:node) { described_class.new([1, 2]) }
+  let(:steps_array) { [[0, 0], [1, 2]] }
+  let(:first_step) { described_class.new(steps_array[0]) }
+  let(:second_step) { described_class.new(steps_array[1], first_step) }
 
-    describe 'when the node has no parent' do
-      it 'sets the coordinates' do
-        expect(node.coordinates).to eq([1, 2])
-      end
-
-      it 'sets the parent to nil' do
-        expect(node.previous_step).to be_nil
-      end
+  describe '#build_coordinates_path' do
+    it 'returns the path to the target position' do
+      expect(second_step.build_coordinates_path).to eq(steps_array)
     end
 
-    describe 'when the node has a parent' do
-      let(:children) { described_class.new([3, 4], node) }
-
-      it 'sets the parent' do
-        expect(children.previous_step).to eq(node)
-      end
+    it 'returns an array' do
+      expect(second_step.build_coordinates_path).to be_a(Array)
     end
   end
 end
