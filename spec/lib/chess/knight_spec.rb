@@ -9,8 +9,8 @@ RSpec.describe Chess::Knight do
       expect(knight.instance_variable_get(:@from).coordinates).to eq(starting_position)
     end
 
-    it 'sets the starting position to a node' do
-      expect(knight.instance_variable_get(:@from)).to be_a(Chess::Node)
+    it 'sets the starting position to a step' do
+      expect(knight.instance_variable_get(:@from)).to be_a(Chess::Step)
     end
   end
 

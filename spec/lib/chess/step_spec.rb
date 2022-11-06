@@ -1,6 +1,6 @@
 require './spec/spec_helper'
 
-RSpec.describe Chess::Node do
+RSpec.describe Chess::Step do
   describe '#initialize' do
     let(:node) { described_class.new([1, 2]) }
 
@@ -10,7 +10,7 @@ RSpec.describe Chess::Node do
       end
 
       it 'sets the parent to nil' do
-        expect(node.parent).to be_nil
+        expect(node.previous_step).to be_nil
       end
     end
 
@@ -18,7 +18,7 @@ RSpec.describe Chess::Node do
       let(:children) { described_class.new([3, 4], node) }
 
       it 'sets the parent' do
-        expect(children.parent).to eq(node)
+        expect(children.previous_step).to eq(node)
       end
     end
   end

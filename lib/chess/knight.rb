@@ -1,5 +1,5 @@
 require_relative 'chess'
-require_relative 'node'
+require_relative 'step'
 require_relative 'queue'
 
 module Chess
@@ -7,7 +7,7 @@ module Chess
     KNIGHT_POSITION_DELTAS = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]].freeze
 
     def initialize(coordinates)
-      @from = Node.new(coordinates)
+      @from = Step.new(coordinates)
     end
 
     def move_to(target_position)
@@ -25,7 +25,7 @@ module Chess
 
       while current_node
         path.unshift(current_node.coordinates)
-        current_node = current_node.parent
+        current_node = current_node.previous_step
       end
 
       path
@@ -36,7 +36,7 @@ module Chess
       return current_node if current_node.coordinates == target_position
 
       possibilities = KNIGHT_POSITION_DELTAS.map { |delta| possible_move(current_node.coordinates, delta) }.compact
-      possibilities.each { |position| queue.add(Node.new(position, current_node)) }
+      possibilities.each { |position| queue.add(Step.new(position, current_node)) }
       move_to_helper(target_position, queue)
     end
 
