@@ -1,30 +1,30 @@
 module Chess
   class Queue
-    attr_reader :data
+    attr_reader :steps
 
-    def initialize(first_data = nil)
-      @data = [first_data].compact
+    def initialize(first_step = nil)
+      @steps = [first_step].compact
     end
 
     def add(value)
-      @data << value
+      @steps << value
     end
 
     def remove
-      return nil if @data.empty?
+      return nil if @steps.empty?
 
-      removed_value = @data[0]
-      @data = @data[1..]
+      removed_value = @steps[0]
+      @steps = @steps[1..]
 
       removed_value
     end
 
     def empty?
-      @data.empty?
+      steps.empty?
     end
 
     def size
-      @data.size
+      steps.size
     end
   end
 end
