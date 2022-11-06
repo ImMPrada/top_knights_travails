@@ -4,20 +4,6 @@ RSpec.describe Chess::Queue do
   let(:empty_queue) { described_class.new }
   let(:queue) { described_class.new(1) }
 
-  describe '#initialize' do
-    describe 'when the queue is empty' do
-      it 'sets the data to an empty array' do
-        expect(empty_queue.data).to eq([])
-      end
-    end
-
-    describe 'when the queue has data' do
-      it 'sets the data' do
-        expect(queue.data).to eq([1])
-      end
-    end
-  end
-
   describe '#size' do
     it 'returns the size of the data' do
       expect(queue.size).to eq(1)
@@ -44,7 +30,7 @@ RSpec.describe Chess::Queue do
     before { queue.add(2) }
 
     it 'adds the value to the @data of the queue' do
-      expect(queue.data).to eq(expected_data)
+      expect(queue.steps).to eq(expected_data)
     end
 
     it 'updates the size of the queue' do
@@ -71,7 +57,7 @@ RSpec.describe Chess::Queue do
       it 'updates the data of the queue' do
         queue.remove
 
-        expect(queue.data).to eq(expected_data)
+        expect(queue.steps).to eq(expected_data)
       end
 
       it 'updates the size of the queue' do
