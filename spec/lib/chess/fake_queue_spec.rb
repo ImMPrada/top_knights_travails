@@ -1,6 +1,6 @@
 require './spec/spec_helper'
 
-RSpec.describe Chess::FakeQueue do
+RSpec.describe Chess::Queue do
   let(:empty_queue) { described_class.new }
   let(:queue) { described_class.new(1) }
 

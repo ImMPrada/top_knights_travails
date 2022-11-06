@@ -1,5 +1,5 @@
 module Chess
-  class FakeQueue
+  class Queue
     attr_reader :data
 
     def initialize(first_data = nil)

@@ -1,6 +1,6 @@
 require_relative 'chess'
 require_relative 'node'
-require_relative 'fake_queue'
+require_relative 'queue'
 
 module Chess
   class Knight
@@ -11,7 +11,7 @@ module Chess
     end
 
     def move_to(target_position)
-      queue = FakeQueue.new(@from)
+      queue = Queue.new(@from)
       last_node = move_to_helper(target_position, queue)
 
       build_path(last_node)
