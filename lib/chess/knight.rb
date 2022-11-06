@@ -7,37 +7,27 @@ module Chess
     KNIGHT_POSITION_DELTAS = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]].freeze
 
     def initialize(coordinates)
-      @from = Step.new(coordinates)
+      @current_step = Step.new(coordinates)
     end
 
     def move_to(target_position)
-      queue = Queue.new(@from)
-      last_node = move_to_helper(target_position, queue)
+      steps_queue = Queue.new(@current_step)
+      current_step = steps_queue.remove
 
-      build_path(last_node)
+      until current_step.coordinates == target_position
+        possibilities = KNIGHT_POSITION_DELTAS.map { |delta| possible_move(current_step.coordinates, delta) }.compact
+        possibilities.each { |position| steps_queue.add(Step.new(position, current_step)) }
+
+        current_step = steps_queue.remove
+      end
+
+      build_path(current_step)
     end
 
     private
 
-    def build_path(last_node)
-      path = []
-      current_node = last_node
-
-      while current_node
-        path.unshift(current_node.coordinates)
-        current_node = current_node.previous_step
-      end
-
-      path
-    end
-
-    def move_to_helper(target_position, queue)
-      current_node = queue.remove
-      return current_node if current_node.coordinates == target_position
-
-      possibilities = KNIGHT_POSITION_DELTAS.map { |delta| possible_move(current_node.coordinates, delta) }.compact
-      possibilities.each { |position| queue.add(Step.new(position, current_node)) }
-      move_to_helper(target_position, queue)
+    def build_path(last_step)
+      last_step.build_coordinates_path
     end
 
     def possible_move(position, delta)
