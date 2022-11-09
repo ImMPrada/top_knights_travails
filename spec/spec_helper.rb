@@ -3,6 +3,8 @@ require 'simplecov-lcov'
 
 require 'byebug'
 require './lib/chess/knight'
+require './lib/chess/step'
+require './lib/chess/queue'
 
 SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
 SimpleCov::Formatter::LcovFormatter.config do |c|
